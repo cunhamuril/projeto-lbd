@@ -34,3 +34,7 @@ body {
   float: right;
   color: #FFF;
 }
+
+nav.bg-dark {
+  background-color: #000 !important;  
+}

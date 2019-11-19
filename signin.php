@@ -21,8 +21,11 @@
     $result = mysqli_query($con, "SELECT * FROM `user` WHERE `name` = '$login' AND `password`='$password'");
 
     if (mysqli_num_rows($result) > 0) {
+      $row = mysqli_fetch_assoc($result);
+
       $_SESSION['login'] = $login;
       $_SESSION['password'] = $password;
+      $_SESSION['id'] = $row["id"];
       header('location:index.php');
     } else {
       echo
