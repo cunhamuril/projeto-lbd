@@ -9,12 +9,6 @@ body {
   background-size: cover;
 }
 
-.login-field {
-  background-color: #FFF;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);  
-  width: 400px;  
-}
-
 .btn-primary {
   background-color: var(--primary-color);
   border: var(--primary-color);
@@ -25,5 +19,18 @@ body {
 .btn-primary:hover {
   filter: brightness(0.9);
   background-color: var(--primary-color);
+  color: #FFF;
+}
+
+.login-field {
+  background-color: #0007;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);  
+  width: 400px;  
+  color: #FFF;
+  border-radius: 4px;
+}
+
+.login-field a {
+  float: right;
   color: #FFF;
 }
