@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard - Filmes e Séries</title>
+  <title>Filmes - Filmes e Séries</title>
 
   <?php
   /* 
@@ -26,26 +26,26 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="">
+      <a class="navbar-brand d-flex align-items-center" href="../">
         <i class="fa fa-film"></i>&nbsp;Filmes e Séries
       </a>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../">Home</a>
+          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="">Filmes<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./movies">Filmes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./series">Séries</a>
+            <a class="nav-link" href="../series">Séries</a>
           </li>
         </ul>
       </div>
@@ -54,8 +54,8 @@
           <?php echo "Bem vindo $username" ?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="edit-user.php"><i class="fa fa-cogs"></i> Alterar cadastro</a>
-          <a class="dropdown-item" href="signout.php"><i class="fa fa-sign-out"></i> Sair</a>
+          <a class="dropdown-item" href="../edit-user.php"><i class="fa fa-cogs"></i> Alterar cadastro</a>
+          <a class="dropdown-item" href="../signout.php"><i class="fa fa-sign-out"></i> Sair</a>
         </div>
       </span>
     </div>

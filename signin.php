@@ -6,6 +6,7 @@
   <title>Login - Filmes e Séries</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -44,14 +45,14 @@
   <div class="container d-flex align-items-center justify-content-center">
     <div class="login-field p-3 mt-5">
       <form method="post" action="signin.php" id="formlogin" name="formlogin">
-        <legend>LOGIN</legend>
+        <legend><i class="fa fa-user"></i> LOGIN</legend>
         <label for="login">Nome: </label>
         <input type="text" name="login" id="login" class="form-control" required>
         <label for="password" class="mt-2">Senha: </label>
         <input type="password" name="password" id="password" class="form-control mb-2" required>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Entrar</button>
       </form>
-      <a href="signup.php" class="">Cadastre-se</a>
+      <a href="signup.php">Cadastre-se</a>
     </div>
   </div>
 

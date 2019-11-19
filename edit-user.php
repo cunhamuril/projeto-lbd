@@ -26,26 +26,29 @@
   $id = $_SESSION['id'];
   ?>
 
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
   <!-- navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="index.php">Filmes e Séries</a>
+      <a class="navbar-brand d-flex align-items-center" href="./">
+        <i class="fa fa-film"></i>&nbsp;Filmes e Séries
+      </a>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
+            <a class="nav-link" href="./">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Filmes</a>
+            <a class="nav-link" href="./movies">Filmes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Séries</a>
+            <a class="nav-link" href="./series">Séries</a>
           </li>
         </ul>
       </div>
@@ -54,8 +57,8 @@
           <?php echo "Bem vindo $username" ?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Editar cadastro</a>
-          <a class="dropdown-item" href="signout.php">Sair</a>
+          <a class="dropdown-item" href="#"><i class="fa fa-cogs"></i> Alterar cadastro</a>
+          <a class="dropdown-item" href="signout.php"><i class="fa fa-sign-out"></i> Sair</a>
         </div>
       </span>
     </div>
@@ -92,22 +95,22 @@
               </button>
             </div>';
       } else {
-      $query = "UPDATE `user` SET `name` = '$login', `password` = '$password' WHERE `id` = $id";
-      mysqli_query($con, $query);
+        $query = "UPDATE `user` SET `name` = '$login', `password` = '$password' WHERE `id` = $id";
+        mysqli_query($con, $query);
 
 
-      $_SESSION['login'] = $login;
-      $_SESSION['password'] = $password;
+        $_SESSION['login'] = $login;
+        $_SESSION['password'] = $password;
 
-      header('location:edit-user.php');
+        header('location:edit-user.php');
 
-      // echo
-      //   '<div class="mt-5 container alert alert-success alert-dismissible fade show" role="alert">
-      //     Cadastro alterado com sucesso!
-      //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      //       <span aria-hidden="true">&times;</span>
-      //     </button>
-      //   </div>';
+        // echo
+        //   '<div class="mt-5 container alert alert-success alert-dismissible fade show" role="alert">
+        //     Cadastro alterado com sucesso!
+        //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //       <span aria-hidden="true">&times;</span>
+        //     </button>
+        //   </div>';
       }
     }
   }
@@ -116,7 +119,7 @@
   <div class="container d-flex align-items-center justify-content-center">
     <div class="login-field p-3 mt-5">
       <form method="post" action="edit-user.php" id="form-signup" name="form-signup">
-        <legend>EDITAR CADASTRO</legend>
+        <legend><i class="fa fa-pencil"></i> ALTERAR CADASTRO</legend>
 
         <label for="login">Nome: </label>
         <input type="text" name="login" id="login" class="form-control" required value="<?php echo $username ?>">
@@ -141,7 +144,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title text-dark" id="confirmDeleteLabel">Confirmação</h5>
+              <h5 class="modal-title text-dark" id="confirmDeleteLabel"><i class="fa fa-user-times text-danger"></i> Confirmação</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

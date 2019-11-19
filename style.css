@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 :root {
   --primary-color: #f72d09;
 }
 
 body {  
   background-image: url('./assets/background.jpg');  
+  filter: brightness(0.8);
   background-color: var(--primary-color);
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'Roboto', sans-serif;
 }
 
 .btn-primary {

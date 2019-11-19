@@ -6,6 +6,7 @@
   <title>Cadastro - Filmes e Séries</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -57,7 +58,7 @@
   <div class="container d-flex align-items-center justify-content-center">
     <div class="login-field p-3 mt-5">
       <form method="post" action="signup.php" id="form-signup" name="form-signup">
-        <legend>CADASTRO</legend>
+        <legend><i class="fa fa-user-plus"></i> CADASTRO</legend>
 
         <label for="login">Nome: </label>
         <input type="text" name="login" id="login" class="form-control" required>
@@ -70,7 +71,7 @@
 
         <button type="submit" class="btn btn-primary">Salvar</button>
       </form>
-      <a href="signin.php" class="">Voltar</a>
+      <a href="signin.php">Voltar</a>
     </div>
   </div>
 
