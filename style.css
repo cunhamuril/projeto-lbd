@@ -1,0 +1,29 @@
+:root {
+  --primary-color: #f72d09;
+}
+
+body {  
+  background-image: url('./assets/background.jpg');  
+  background-color: var(--primary-color);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login-field {
+  background-color: #FFF;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);  
+  width: 400px;  
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border: var(--primary-color);
+  color: #FFF;
+  transition: ease-out 0.2s;
+}
+
+.btn-primary:hover {
+  filter: brightness(0.9);
+  background-color: var(--primary-color);
+  color: #FFF;
+}
