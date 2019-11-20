@@ -5,8 +5,7 @@
 }
 
 body {  
-  background-image: url('./assets/background.jpg');  
-  filter: brightness(0.8);
+  background-image: url('./assets/background.jpg');    
   background-color: var(--primary-color);
   background-repeat: no-repeat;
   background-size: cover;
@@ -41,4 +40,12 @@ body {
 
 nav.bg-dark {
   background-color: #000 !important;  
+}
+
+.card h5>i {
+  color: var(--primary-color);
+}
+
+.card h5 {
+  font-size: 2em;
 }
