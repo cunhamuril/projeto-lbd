@@ -5,11 +5,26 @@
 }
 
 body {  
-  background-image: url('./assets/background.jpg');    
+  background-image: url('./assets/background.jpg');   
+  background-attachment: fixed; 
   background-color: var(--primary-color);
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Roboto', sans-serif;
+}
+
+main {
+  min-height: 90vh;
+}
+
+footer {
+  background-color: #000;
+  color: #FFF;
+  padding: 40px 10px;
+}
+
+footer div {
+  float: right;  
 }
 
 .btn-primary {

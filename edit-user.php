@@ -54,7 +54,7 @@
       </div>
       <span class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <?php echo "Bem vindo $username" ?>
+        <i class="fa fa-user-circle-o"></i> <?php echo $username ?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#"><i class="fa fa-cogs"></i> Alterar cadastro</a>
