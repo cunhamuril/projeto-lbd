@@ -33,36 +33,37 @@
 </head>
 
 <body>
-  <!-- navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="./">
-        <i class="fa fa-film"></i>&nbsp;Filmes e Séries
-      </a>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="./">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./movies">Filmes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./series">Séries</a>
-          </li>
-        </ul>
-      </div>
-      <span class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-user-circle-o"></i> <?php echo $username ?>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="./">
+          <i class="fa fa-film"></i>&nbsp;Filmes e Séries
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#"><i class="fa fa-cogs"></i> Alterar cadastro</a>
-          <a class="dropdown-item" href="signout.php"><i class="fa fa-sign-out"></i> Sair</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="./">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./movies">Filmes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./series">Séries</a>
+            </li>
+          </ul>
         </div>
-      </span>
-    </div>
-  </nav>
+        <span class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-circle-o"></i> <?php echo $username ?>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#"><i class="fa fa-cogs"></i> Alterar cadastro</a>
+            <a class="dropdown-item" href="signout.php"><i class="fa fa-sign-out"></i> Sair</a>
+          </div>
+        </span>
+      </div>
+    </nav>
+  </header>
 
   <?php
   if (
@@ -103,64 +104,64 @@
         $_SESSION['password'] = $password;
 
         header('location:edit-user.php');
-
-        // echo
-        //   '<div class="mt-5 container alert alert-success alert-dismissible fade show" role="alert">
-        //     Cadastro alterado com sucesso!
-        //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        //       <span aria-hidden="true">&times;</span>
-        //     </button>
-        //   </div>';
       }
     }
   }
   ?>
 
-  <div class="container d-flex align-items-center justify-content-center">
-    <div class="login-field p-3 mt-5">
-      <form method="post" action="edit-user.php" id="form-signup" name="form-signup">
-        <legend><i class="fa fa-pencil"></i> ALTERAR CADASTRO</legend>
+  <main>
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="login-field p-3 mt-5">
+        <form method="post" action="edit-user.php" id="form-signup" name="form-signup">
+          <legend><i class="fa fa-pencil"></i> ALTERAR CADASTRO</legend>
 
-        <label for="login">Nome: </label>
-        <input type="text" name="login" id="login" class="form-control" required value="<?php echo $username ?>">
+          <label for="login">Nome: </label>
+          <input type="text" name="login" id="login" class="form-control" required value="<?php echo $username ?>">
 
-        <label for="password" class="mt-2">Senha: </label>
-        <input type="password" name="password" id="password" class="form-control" required>
+          <label for="password" class="mt-2">Senha: </label>
+          <input type="password" name="password" id="password" class="form-control" required>
 
-        <label for="password" class="mt-2">Confirmar senha: </label>
-        <input type="password" name="confirm-password" id="confirm-password" class="form-control mb-2" required>
+          <label for="password" class="mt-2">Confirmar senha: </label>
+          <input type="password" name="confirm-password" id="confirm-password" class="form-control mb-2" required>
 
-        <button type="submit" class="btn btn-primary">Salvar</button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#confirmDelete">
-          Excluir cadastro
-        </button>
-      </form>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#confirmDelete">
+            Excluir cadastro
+          </button>
+        </form>
 
 
-      <!-- Modal -->
-      <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title text-dark" id="confirmDeleteLabel"><i class="fa fa-user-times text-danger"></i> Confirmação</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body text-dark">
-              Tem certeza que deseja excluir o cadastro?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <a href="delete-user.php" class="btn btn-primary">Excluir</a>
+        <!-- Modal -->
+        <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title text-dark" id="confirmDeleteLabel"><i class="fa fa-user-times text-danger"></i> Confirmação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-dark">
+                Tem certeza que deseja excluir o cadastro?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <a href="delete-user.php" class="btn btn-primary">Excluir</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
+
+  <footer>
+    <div>
+      <h5>Projeto de Laboratório de Banco de Dados</h5>
+    </div>
+  </footer>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
