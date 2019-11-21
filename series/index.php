@@ -22,6 +22,7 @@
   }
 
   $username = $_SESSION['login'];
+  $id = $_SESSION['id'];
   ?>
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -64,7 +65,53 @@
   </header>
 
   <main>
+    <div class="container">
+      <button class="mt-5 mb-3 btn btn-success btn-lg">
+        <i class="fa fa-plus"></i> Novo
+      </button>
+      <table class="table table-hover table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Título</th>
+            <th scope="col">Ano</th>
+            <th scope="col">Gênero</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          $con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
 
+          $query = "SELECT s.thumbnail, s.year, s.title, g.name as genre , s.watched FROM series s
+                    INNER JOIN serie_genres g
+                    ON g.id = s.id_genre
+                    WHERE s.id_user = $id";
+
+          $result = mysqli_query($con, $query);
+
+          while ($row = mysqli_fetch_assoc($result))
+            echo
+              '
+              <tr>
+                <th scope="row">
+                  <img src="' . $row["thumbnail"] . '" alt="Poster" width="200px">
+                </th>
+                <td>' . $row["title"] . '</td>
+                <td>' . $row["year"] . '</td>
+                <td>' . $row["genre"] . '</td>
+                <td>' . $row["watched"] = 0 ? "Assistido" : "Não assistido" . '</td>
+                <td>
+                  <button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>
+                  <button type="button" class="btn btn-danger ml-1"><i class="fa fa-trash-o"></i></button>
+                </td>
+              </tr>
+            '
+            ?>
+        </tbody>
+      </table>
+    </div>
   </main>
 
   <footer>

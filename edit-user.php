@@ -111,7 +111,7 @@
 
   <main>
     <div class="container d-flex align-items-center justify-content-center">
-      <div class="login-field p-3 mt-5">
+      <div class="form-field p-3 mt-5">
         <form method="post" action="edit-user.php" id="form-signup" name="form-signup">
           <legend><i class="fa fa-pencil"></i> ALTERAR CADASTRO</legend>
 
@@ -131,7 +131,6 @@
             Excluir cadastro
           </button>
         </form>
-
 
         <!-- Modal -->
         <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">

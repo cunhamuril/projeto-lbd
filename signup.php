@@ -56,7 +56,7 @@
   ?>
 
   <div class="container d-flex align-items-center justify-content-center">
-    <div class="login-field p-3 mt-5">
+    <div class="form-field p-3 mt-5">
       <form method="post" action="signup.php" id="form-signup" name="form-signup">
         <legend><i class="fa fa-user-plus"></i> CADASTRO</legend>
 
@@ -69,7 +69,7 @@
         <label for="password" class="mt-2">Confirmar senha: </label>
         <input type="password" name="confirm-password" id="confirm-password" class="form-control mb-2" required>
 
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="submit" class="mt-3 btn btn-primary btn-lg btn-block">Salvar</button>
       </form>
       <a href="signin.php">Voltar</a>
     </div>

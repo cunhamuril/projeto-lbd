@@ -43,14 +43,14 @@
   ?>
 
   <div class="container d-flex align-items-center justify-content-center">
-    <div class="login-field p-3 mt-5">
+    <div class="form-field p-3 mt-5">
       <form method="post" action="signin.php" id="formlogin" name="formlogin">
         <legend><i class="fa fa-user"></i> LOGIN</legend>
         <label for="login">Nome: </label>
         <input type="text" name="login" id="login" class="form-control" required>
         <label for="password" class="mt-2">Senha: </label>
         <input type="password" name="password" id="password" class="form-control mb-2" required>
-        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Entrar</button>
+        <button type="submit" class="mt-3 btn btn-primary btn-lg btn-block"><i class="fa fa-sign-in"></i> Entrar</button>
       </form>
       <a href="signup.php">Cadastre-se</a>
     </div>
