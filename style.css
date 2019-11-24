@@ -14,13 +14,14 @@ body {
 }
 
 main {
-  min-height: 80vh;
+  min-height: 90vh;
 }
 
 footer {
   background-color: #000;
   color: #FFF;
   padding: 40px 10px;
+  width: 100%;
 }
 
 footer div {
@@ -55,6 +56,21 @@ footer div {
 
 nav.bg-dark {
   background-color: #000 !important;  
+}
+
+.cards a {
+  text-decoration: none;
+  color: #000;
+  transition: ease-out 0.2s;
+}
+
+.cards a:hover {
+  transform: scale(1.02);
+  box-shadow: 4px 4px 20px #0004;
+}
+
+.cards a:active {
+  transform: scale(0.9);
 }
 
 .card h5>i {

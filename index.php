@@ -105,49 +105,56 @@
   </header>
 
   <main>
-    <div class="container mt-5 mb-5 d-flex">
-      <div class="card" style="width: 22rem;">
-        <div class="card-body">
-          <h5 class="card-title"><i class="fa fa-film"></i>&nbsp; Filmes</h5>
-          <hr>
-          <h6 class="card-subtitle mb-2 text-muted">
-            Assistido: <strong class="text-dark">
-              <?php echo watched($movies)["c"] ?>
-            </strong>
-          </h6>
-          <h6 class="card-subtitle mb-2 text-muted">
-            Não assistido: <strong class="text-dark">
-              <?php echo unwatched($movies)["c"] ?>
-            </strong>
-          </h6>
-          <h6 class="card-subtitle mb-2 text-muted">
-            Total: <strong class="text-dark">
-              <?php echo total($movies)["c"] ?>
-            </strong>
-          </h6>
+    <div class="container mt-5 mb-5 d-flex cards">
+
+      <a href="./movies">
+        <div class="card" style="width: 22rem;">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fa fa-film"></i>&nbsp; Filmes</h5>
+            <hr>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Assistido: <strong class="text-dark">
+                <?php echo watched($movies)["c"] ?>
+              </strong>
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Não assistido: <strong class="text-dark">
+                <?php echo unwatched($movies)["c"] ?>
+              </strong>
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Total: <strong class="text-dark">
+                <?php echo total($movies)["c"] ?>
+              </strong>
+            </h6>
+          </div>
         </div>
-      </div>
-      <div class="card ml-3" style="width: 22rem;">
-        <div class="card-body">
-          <h5 class="card-title"><i class="fa fa-tv"></i>&nbsp; Séries</h5>
-          <hr>
-          <h6 class="card-subtitle mb-2 text-muted">
-            Assistido: <strong class="text-dark">
-              <?php echo watched($series)["c"] ?>
-            </strong>
-          </h6>
-          <h6 class="card-subtitle mb-2 text-muted">
-            Não assistido: <strong class="text-dark">
-              <?php echo unwatched($series)["c"] ?>
-            </strong>
-          </h6>
-          <h6 class="card-subtitle mb-2 text-muted">
-            Total: <strong class="text-dark">
-              <?php echo total($series)["c"] ?>
-            </strong>
-          </h6>
+      </a>
+
+      <a href="./series">
+        <div class="card ml-3" style="width: 22rem;">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fa fa-tv"></i>&nbsp; Séries</h5>
+            <hr>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Assistido: <strong class="text-dark">
+                <?php echo watched($series)["c"] ?>
+              </strong>
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Não assistido: <strong class="text-dark">
+                <?php echo unwatched($series)["c"] ?>
+              </strong>
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Total: <strong class="text-dark">
+                <?php echo total($series)["c"] ?>
+              </strong>
+            </h6>
+          </div>
         </div>
-      </div>
+      </a>
+
     </div>
   </main>
 
