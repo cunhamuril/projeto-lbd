@@ -4,6 +4,10 @@
   --primary-color: #f72d09;
 }
 
+.table a {
+  text-decoration: none;
+}
+
 body {  
   background-image: url('./assets/background.jpg');   
   background-attachment: fixed; 

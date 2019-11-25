@@ -1,6 +1,11 @@
   <?php
   $con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
 
+  $movieId = -1;
+  $title = "";
+  $genre = "";
+  $watched = 0;
+
   /* 
     esse bloco de código em php verifica se existe a sessão, pois o usuário pode
     simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
@@ -19,16 +24,12 @@
   $username = $_SESSION['login'];
   $UserId = $_SESSION['id'];
 
-  $movieId = -1;
-  $title = "";
-  $genre = "";
-  $watched = 0;
 
   if (isset($_GET["id"])) {
     $movieId = $_GET["id"];
 
     /**
-     * DELETE MOVIE
+     * DELETE OR CHECK UPDATE MOVIE
      */
     if (isset($_GET["del"])) {
       $queryDeleteMovie = 'DELETE FROM movies WHERE id = "' . $movieId . '";';
@@ -97,7 +98,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <a class="navbar-brand d-flex align-items-center" href="../">
-            <i class="fa fa-film"></i>&nbsp;Filmes e Séries
+            <img src="../assets/logo.png" alt="logo" height="55px">
           </a>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
@@ -133,7 +134,7 @@
 
         <a href="genres.php">
           <button class="mt-5 mb-3 ml-1 btn btn-light" data-toggle="modal" data-target="#addGenre">
-            <i class="fa fa-fort-awesome"></i> Gêneros
+            <i class="fa fa-fort-awesome"></i> Gerenciar gêneros
           </button>
         </a>
 
@@ -157,10 +158,12 @@
 
             while ($rowMoviesTable = mysqli_fetch_assoc($resultMoviesTable)) {
               $stateWatched = $rowMoviesTable["watched"] ? "Assistido" : "Não assistido";
+              $colorWatched = $rowMoviesTable["watched"] ? "text-success" : "text-danger";
+
               echo '<tr>';
               echo '<td>' . $rowMoviesTable["title"] . '</td>';
               echo '<td>' . $rowMoviesTable["genre"] . '</td>';
-              echo '<td>' . $stateWatched . '</td>';
+              echo '<td class="'.$colorWatched.'">' . $stateWatched . '</td>';
               echo '<td>';
               echo '<a href="index.php?id=' . $rowMoviesTable["id"] . '">';
               echo '<button type="button" class="btn btn-info btn-edit">';

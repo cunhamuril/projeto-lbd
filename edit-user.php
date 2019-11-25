@@ -37,7 +37,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="./">
-          <i class="fa fa-film"></i>&nbsp;Filmes e Séries
+        <img src="./assets/logo.png" alt="logo" height="55px">
         </a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">

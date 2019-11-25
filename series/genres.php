@@ -1,4 +1,10 @@
 <?php
+$con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
+$err = null;
+$auxQuery["name"] = null;
+
+$genreId = -1;
+
 /* 
     esse bloco de código em php verifica se existe a sessão, pois o usuário pode
     simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
@@ -15,9 +21,55 @@ if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['password']) == t
 }
 
 $username = $_SESSION['login'];
-$UserId = $_SESSION['id'];
+$userId = $_SESSION['id'];
 
-$con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
+/**
+ * DELETE OR CHECK UPDATE GENRE
+ */
+if (isset($_GET["id"])) {
+  $genreId = $_GET["id"];
+
+  if (isset($_GET["del"])) {
+    $queryDeleteGenre = "DELETE FROM serie_genres WHERE id = $genreId;";
+    mysqli_query($con, $queryDeleteGenre);
+
+    if ($con->affected_rows == -1) {
+      $err = $con->errno == 1451 ? "Falha ao apagar! Gênero contém série salva." : "Erro! $con->error";
+    } else {
+      header('location:genres.php');
+    }    
+  } else {
+    $queryGetById = "SELECT * FROM serie_genres WHERE id = $genreId;";
+
+    $auxQuery = mysqli_fetch_assoc(mysqli_query($con, $queryGetById));
+
+    $genreName = $auxQuery["name"];
+  }
+}
+
+/**
+ * INSERT OR UPDATE GENRE
+ */
+if (isset($_POST['add-genre'])) {
+  $addGenre = $_POST['add-genre'];
+  $genreId = $_POST['id'];
+
+  $queryCheckGenres = mysqli_query($con, "SELECT * FROM serie_genres WHERE name = '$addGenre' AND id_user = '$userId' ");
+  if (mysqli_num_rows($queryCheckGenres) > 0 && $genreId == -1) {
+    $err = "Gênero já existente!";
+  } else {
+
+    if ($genreId == -1) {
+      $queryGenres = 'INSERT INTO serie_genres (name, id_user) 
+      VALUES ("' . $addGenre . '", "' . $userId . '");';
+    } else {
+      $queryGenres = "UPDATE serie_genres SET name = '$addGenre' WHERE id = $genreId AND id_user = $userId";
+    }
+
+    mysqli_query($con, $queryGenres);
+    header('location:genres.php');
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +90,7 @@ $con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="../">
-          <i class="fa fa-film"></i>&nbsp;Filmes e Séries
+          <img src="../assets/logo.png" alt="logo" height="55px">
         </a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
@@ -67,52 +119,34 @@ $con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
   </header>
 
   <main>
-    <?php
-
-    /**
-     * INSERT GENRE
-     */
-    if (isset($_POST['add-genre'])) {
-      $addGenre = $_POST['add-genre'];
-
-      $queryCheckGenres = mysqli_query($con, "SELECT * FROM serie_genres WHERE name = '$addGenre' AND id_user = '$UserId' ");
-      if (mysqli_num_rows($queryCheckGenres) > 0) {
-        echo
-          '<div class="mt-5 container alert alert-danger alert-dismissible fade show" role="alert">
-                Gênero já existente!
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>';
-      } else {
-        $queryPostGenres = 'INSERT INTO serie_genres (name, id_user) 
-            VALUES ("' . $addGenre . '", "' . $UserId . '");';
-        mysqli_query($con, $queryPostGenres);
-      }
-    }
-
-    /**
-     * DELETE GENRE
-     */
-    if (isset($_GET["id"])) {
-      $genreId = $_GET["id"];
-
-      if (isset($_GET["del"])) {
-        $queryDeleteGenre = 'DELETE FROM serie_genres WHERE id = ' . $genreId . ';';
-        mysqli_query($con, $queryDeleteGenre);
-      }
-    }
-    ?>
-
-
     <div class="container mt-5">
-      <form method="post" action="<?= $_SERVER["PHP_SELF"] ?>" id="form-signup" name="form-signup">
-        <div class="d-flex mb-4">          
-            <input type="text" name="add-genre" id="add-genre" class="form-control" placeholder="Novo gênero" required style="width: 400px;">
-            <button class="btn btn-success ml-2" type="submit" id="button-addon2">Adicionar</button>          
-            <a href="index.php" class="ml-2"><button class="btn btn-secondary">Voltar</button></a>
+
+      <?php
+      if ($err) {
+        ?>
+
+        <div class="mt-5 container alert alert-danger alert-dismissible fade show" role="alert">
+          <?= $err ?>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </form>
+
+      <?php
+      }
+      ?>
+
+      <div class="mb-4">
+        <form class="d-flex" method="post" action="<?= $_SERVER["PHP_SELF"] ?>" id="form-signup" name="form-signup">          
+          <input type="text" name="add-genre" id="add-genre" value="<?= ($genreId == -1) ? '' : $auxQuery['name'] ?>"
+            class="form-control" placeholder="Novo gênero" required style="width: 400px;">          
+
+          <input type="hidden" value="<?= $genreId ?>" name="id">
+
+          <button class="btn btn-success ml-2" type="submit" id="button-addon2"><?= ($genreId == -1) ? "Adicionar" : "Salvar" ?></button>
+          <a href="index.php" class="ml-2"><button type="button" class="btn btn-secondary">Voltar</button></a>
+        </form>
+      </div>
 
       <table class="table table-hover table-striped table-dark">
         <thead>
@@ -123,7 +157,7 @@ $con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
         </thead>
         <tbody>
           <?php
-          $queryGenresTable = "SELECT * FROM serie_genres WHERE id_user = $UserId";
+          $queryGenresTable = "SELECT * FROM serie_genres WHERE id_user = $userId";
 
           $resultGenresTable = mysqli_query($con, $queryGenresTable);
 
@@ -133,7 +167,10 @@ $con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
                 <tr>
                   <td>' . $rowGenresTable["name"] . '</td>
                   <td>
-                    <button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>
+                    <a href="genres.php?id=' . $rowGenresTable["id"].'">
+                    <button type="button" class="btn btn-info">
+                    <i class="fa fa-pencil"></i>
+                    </button>
                     <a href="genres.php?id=' . $rowGenresTable["id"] . '&del=true">
                       <button type="button" class="btn btn-danger ml-1"><i class="fa fa-trash-o"></i></button>
                     </a>
@@ -143,8 +180,8 @@ $con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
             ?>
         </tbody>
       </table>
+    </div>
   </main>
-  </div>
 
   <footer>
     <div>

@@ -42,8 +42,11 @@
   }
   ?>
 
+  <div class="mt-5 mb-3 d-flex justify-content-center align-items-center">
+    <img src="./assets/logo2.png" alt="logo" height="85px">
+  </div>
   <div class="container d-flex align-items-center justify-content-center">
-    <div class="form-field p-3 mt-5">
+    <div class="form-field p-3">
       <form method="post" action="signin.php" id="formlogin" name="formlogin">
         <legend><i class="fa fa-user"></i> LOGIN</legend>
         <label for="login">Nome: </label>
