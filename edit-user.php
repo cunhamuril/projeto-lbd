@@ -111,7 +111,7 @@ if (
           <legend><i class="fa fa-pencil"></i> ALTERAR CADASTRO</legend>
 
           <label for="login">Nome: </label>
-          <input type="text" name="login" id="login" class="form-control" required value="<?php echo $username ?>">
+          <input autocomplete="off" type="text" name="login" id="login" class="form-control" required value="<?php echo $username ?>">
 
           <label for="password" class="mt-2">Senha: </label>
           <input type="password" name="password" id="password" class="form-control" required>
@@ -138,7 +138,7 @@ if (
                 </button>
               </div>
               <div class="modal-body text-dark">
-                Tem certeza que deseja excluir o cadastro?
+                Tem certeza que deseja excluir o cadastro? Todos os seus dados serão perdidos!
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

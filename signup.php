@@ -62,7 +62,7 @@ if (
         <legend><i class="fa fa-user-plus"></i> CADASTRO</legend>
 
         <label for="login">Nome: </label>
-        <input type="text" name="login" id="login" class="form-control" required>
+        <input autocomplete="off" type="text" name="login" id="login" class="form-control" required>
 
         <label for="password" class="mt-2">Senha: </label>
         <input type="password" name="password" id="password" class="form-control" required>

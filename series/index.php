@@ -201,7 +201,7 @@ if (isset($_POST['title'])) {
         <form method="POST" action="<?= $_SERVER["PHP_SELF"] ?>" id="form-new-serie" name="form-new-serie">
           <div class="modal-body text-dark">
             <label for="title">Título: </label>
-            <input type="text" name="title" id="title" class="form-control" required value="<?= ($serieId == -1) ? '' : $auxQuery['title'] ?>">
+            <input autocomplete="off" type="text" name="title" id="title" class="form-control" required value="<?= ($serieId == -1) ? '' : $auxQuery['title'] ?>">
 
             <label for="genre">Gênero</label>
             <select class="form-control" id="genre" name="genre" required value="<?= ($serieId == -1) ? "" : $auxQuery['id_genre'] ?>">

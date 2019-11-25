@@ -209,7 +209,7 @@
           <form method="POST" action="<?= $_SERVER["PHP_SELF"] ?>" id="form-new-movie" name="form-new-movie">
             <div class="modal-body text-dark">
               <label for="title">Título: </label>
-              <input type="text" name="title" id="title" class="form-control" required value="<?= ($movieId == -1) ? '' : $auxQuery['title'] ?>">
+              <input autocomplete="off" type="text" name="title" id="title" class="form-control" required value="<?= ($movieId == -1) ? '' : $auxQuery['title'] ?>">
 
               <label for="genre">Gênero</label>
               <select class="form-control" id="genre" name="genre" required value="<?= ($movieId == -1) ? "" : $auxQuery['id_genre'] ?>">

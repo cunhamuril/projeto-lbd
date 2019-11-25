@@ -140,7 +140,7 @@ if (isset($_POST['add-genre'])) {
 
       <form method="post" action="<?= $_SERVER["PHP_SELF"] ?>" id="form-signup" name="form-signup">
         <div class="d-flex mb-4">
-          <input  value="<?= ($genreId == -1) ? '' : $auxQuery['name'] ?>" type="text" name="add-genre" id="add-genre" class="form-control" placeholder="Novo gênero" required style="width: 400px;">
+          <input autocomplete="off" value="<?= ($genreId == -1) ? '' : $auxQuery['name'] ?>" type="text" name="add-genre" id="add-genre" class="form-control" placeholder="Novo gênero" required style="width: 400px;">
           
           <input type="hidden" value="<?= $genreId ?>" name="id">
 
