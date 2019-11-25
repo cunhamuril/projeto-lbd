@@ -37,7 +37,7 @@ if (isset($_GET["id"])) {
       $err = $con->errno == 1451 ? "Falha ao apagar! Gênero contém série salva." : "Erro! $con->error";
     } else {
       header('location:genres.php');
-    }    
+    }
   } else {
     $queryGetById = "SELECT * FROM serie_genres WHERE id = $genreId;";
 
@@ -137,9 +137,8 @@ if (isset($_POST['add-genre'])) {
       ?>
 
       <div class="mb-4">
-        <form class="d-flex" method="post" action="<?= $_SERVER["PHP_SELF"] ?>" id="form-signup" name="form-signup">          
-          <input type="text" name="add-genre" id="add-genre" value="<?= ($genreId == -1) ? '' : $auxQuery['name'] ?>"
-            class="form-control" placeholder="Novo gênero" required style="width: 400px;">          
+        <form class="d-flex" method="post" action="<?= $_SERVER["PHP_SELF"] ?>" id="form-signup" name="form-signup">
+          <input type="text" name="add-genre" id="add-genre" value="<?= ($genreId == -1) ? '' : $auxQuery['name'] ?>" class="form-control" placeholder="Novo gênero" required style="width: 400px;">
 
           <input type="hidden" value="<?= $genreId ?>" name="id">
 
@@ -167,10 +166,8 @@ if (isset($_POST['add-genre'])) {
                 <tr>
                   <td>' . $rowGenresTable["name"] . '</td>
                   <td>
-                    <a href="genres.php?id=' . $rowGenresTable["id"].'">
-                    <button type="button" class="btn btn-info">
-                    <i class="fa fa-pencil"></i>
-                    </button>
+                    <a href="genres.php?id=' . $rowGenresTable["id"] . '">
+                      <button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>
                     <a href="genres.php?id=' . $rowGenresTable["id"] . '&del=true">
                       <button type="button" class="btn btn-danger ml-1"><i class="fa fa-trash-o"></i></button>
                     </a>

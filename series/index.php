@@ -69,15 +69,8 @@ if (isset($_POST['title'])) {
   mysqli_query($con, $queryserie);
   header('location:index.php');
 }
-
 ?>
 
-
-
-
-<!-- 
-    HTML
-   -->
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -162,7 +155,7 @@ if (isset($_POST['title'])) {
             echo '<tr>';
             echo '<td>' . $rowseriesTable["title"] . '</td>';
             echo '<td>' . $rowseriesTable["genre"] . '</td>';
-            echo '<td class="'.$colorWatched.'">' . $stateWatched . '</td>';
+            echo '<td class="' . $colorWatched . '">' . $stateWatched . '</td>';
             echo '<td>';
             echo '<a href="index.php?id=' . $rowseriesTable["id"] . '">';
             echo '<button type="button" class="btn btn-info btn-edit">';
@@ -252,6 +245,7 @@ if (isset($_POST['title'])) {
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <?php
+  // Se na página estiver id como param, mostrar modal executando script jQuery
   if ($serieId >= 1) {
     echo "<script>";
     echo "$(document).ready(function() {";

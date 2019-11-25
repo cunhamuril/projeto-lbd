@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<?php
+$movies = 'movies';
+$series = 'series';
+$con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd') or die("Sem conexão com o servidor de banco de dados");
 
-<head>
-  <meta charset="UTF-8">
-  <title>Dashboard - Filmes e Séries</title>
-
-  <?php
-  /* 
+/* 
     esse bloco de código em php verifica se existe a sessão, pois o usuário pode
     simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
     o caminho para a página principal do site (sistema), burlando assim a obrigação de 
@@ -14,56 +11,60 @@
     então ao verificar que a session não existe a página redireciona o mesmo
     para a index.php.
   */
-  session_start();
-  if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['password']) == true)) {
-    unset($_SESSION['login']);
-    unset($_SESSION['password']);
-    header('location:signin.php');
-  }
+session_start();
+if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['password']) == true)) {
+  unset($_SESSION['login']);
+  unset($_SESSION['password']);
+  header('location:signin.php');
+}
 
-  $username = $_SESSION['login'];
-  $id = $_SESSION['id'];
+$username = $_SESSION['login'];
+$id = $_SESSION['id'];
 
-  $movies = 'movies';
-  $series = 'series';
-  $con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
 
-  function watched(&$type)
-  {
-    global $id, $con;
+function watched(&$type)
+{
+  global $id, $con;
 
-    $queryWatched = "SELECT COUNT(m.title) AS c FROM $type m
+  $queryWatched = "SELECT COUNT(m.title) AS count FROM $type m
                    INNER JOIN user u
                    ON u.id = m.id_user
                    WHERE u.id = '$id' AND m.watched = true;";
 
-    return mysqli_fetch_assoc(mysqli_query($con, $queryWatched));
-  }
+  return mysqli_fetch_assoc(mysqli_query($con, $queryWatched));
+}
 
-  function unwatched(&$type)
-  {
-    global $id, $con;
+function unwatched(&$type)
+{
+  global $id, $con;
 
-    $queryUnwatched = "SELECT COUNT(m.title) AS c FROM $type m
+  $queryUnwatched = "SELECT COUNT(m.title) AS count FROM $type m
                      INNER JOIN user u
                      ON u.id = m.id_user
                      WHERE u.id = '$id' AND m.watched = false;";
 
-    return mysqli_fetch_assoc(mysqli_query($con, $queryUnwatched));
-  }
+  return mysqli_fetch_assoc(mysqli_query($con, $queryUnwatched));
+}
 
-  function total(&$type)
-  {
-    global $id, $con;
+function total(&$type)
+{
+  global $id, $con;
 
-    $queryTotal = "SELECT COUNT(m.title) AS c FROM $type m
+  $queryTotal = "SELECT COUNT(m.title) AS c FROM $type m
                    INNER JOIN user u
                    ON u.id = m.id_user
                    WHERE u.id = '$id';";
 
-    return mysqli_fetch_assoc(mysqli_query($con, $queryTotal));
-  }
-  ?>
+  return mysqli_fetch_assoc(mysqli_query($con, $queryTotal));
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Filmes e Séries</title>
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -75,7 +76,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="">          
+        <a class="navbar-brand d-flex align-items-center" href="">
           <img src="./assets/logo.png" alt="logo" height="55px">
         </a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -114,17 +115,17 @@
             <hr>
             <h6 class="card-subtitle mb-2 text-muted">
               Assistido: <strong class="text-dark">
-                <?php echo watched($movies)["c"] ?>
+                <?php echo watched($movies)["count"] ?>
               </strong>
             </h6>
             <h6 class="card-subtitle mb-2 text-muted">
               Não assistido: <strong class="text-dark">
-                <?php echo unwatched($movies)["c"] ?>
+                <?php echo unwatched($movies)["count"] ?>
               </strong>
             </h6>
             <h6 class="card-subtitle mb-2 text-muted">
               Total: <strong class="text-dark">
-                <?php echo total($movies)["c"] ?>
+                <?php echo total($movies)["count"] ?>
               </strong>
             </h6>
           </div>
@@ -138,17 +139,17 @@
             <hr>
             <h6 class="card-subtitle mb-2 text-muted">
               Assistido: <strong class="text-dark">
-                <?php echo watched($series)["c"] ?>
+                <?php echo watched($series)["count"] ?>
               </strong>
             </h6>
             <h6 class="card-subtitle mb-2 text-muted">
               Não assistido: <strong class="text-dark">
-                <?php echo unwatched($series)["c"] ?>
+                <?php echo unwatched($series)["count"] ?>
               </strong>
             </h6>
             <h6 class="card-subtitle mb-2 text-muted">
               Total: <strong class="text-dark">
-                <?php echo total($series)["c"] ?>
+                <?php echo total($series)["count"] ?>
               </strong>
             </h6>
           </div>

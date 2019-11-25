@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<?php
+$err = null;
+$con = mysqli_connect("localhost", "root", "12341234", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
 
-<head>
-  <meta charset="UTF-8">
-  <title>Alterar cadastro - Filmes e Séries</title>
-
-  <?php
-  /* 
+/* 
     esse bloco de código em php verifica se existe a sessão, pois o usuário pode
     simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
     o caminho para a página principal do site (sistema), burlando assim a obrigação de 
@@ -14,17 +10,51 @@
     então ao verificar que a session não existe a página redireciona o mesmo
     para a index.php.
   */
-  session_start();
-  if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['password']) == true)) {
-    unset($_SESSION['login']);
-    unset($_SESSION['password']);
-    header('location:signin.php');
-  }
+session_start();
+if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['password']) == true)) {
+  unset($_SESSION['login']);
+  unset($_SESSION['password']);
+  header('location:signin.php');
+}
 
-  $username = $_SESSION['login'];
-  $password = $_SESSION['password'];
-  $id = $_SESSION['id'];
-  ?>
+$username = $_SESSION['login'];
+$password = $_SESSION['password'];
+$id = $_SESSION['id'];
+
+if (
+  !empty($_POST['login']) &&
+  !empty($_POST['password']) &&
+  !empty($_POST['confirm-password'])
+) {
+  $login = $_POST['login'];
+  $password = $_POST['password'];
+  $confirmPassword = $_POST['confirm-password'];
+
+  if ($password != $confirmPassword) {
+    $err = "As senhas não conferem!";
+  } else {
+    $result = mysqli_query($con, "SELECT * FROM `user` WHERE `name` = '$login'");
+    if (mysqli_num_rows($result) > 0 && $login != $username) {
+      $err = "Nome de usuário já existente!";
+    } else {
+      $query = "UPDATE `user` SET `name` = '$login', `password` = '$password' WHERE `id` = $id";
+      mysqli_query($con, $query);
+
+      $_SESSION['login'] = $login;
+      $_SESSION['password'] = $password;
+
+      header('location:edit-user.php');
+    }
+  }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Alterar cadastro - Filmes e Séries</title>
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -37,7 +67,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="./">
-        <img src="./assets/logo.png" alt="logo" height="55px">
+          <img src="./assets/logo.png" alt="logo" height="55px">
         </a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
@@ -65,51 +95,16 @@
     </nav>
   </header>
 
-  <?php
-  if (
-    !empty($_POST['login']) &&
-    !empty($_POST['password']) &&
-    !empty($_POST['confirm-password'])
-  ) {
-    $login = $_POST['login'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm-password'];
-
-    $con = mysqli_connect("localhost", "root", "12341234", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
-
-    if ($password != $confirmPassword) {
-      echo
-        '<div class="mt-5 container alert alert-danger alert-dismissible fade show" role="alert">
-          As senhas não conferem!
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>';
-    } else {
-      $result = mysqli_query($con, "SELECT * FROM `user` WHERE `name` = '$login'");
-      if (mysqli_num_rows($result) > 0 && $login != $username) {
-        echo
-          '<div class="mt-5 container alert alert-danger alert-dismissible fade show" role="alert">
-              Nome de usuário já existente!
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>';
-      } else {
-        $query = "UPDATE `user` SET `name` = '$login', `password` = '$password' WHERE `id` = $id";
-        mysqli_query($con, $query);
-
-
-        $_SESSION['login'] = $login;
-        $_SESSION['password'] = $password;
-
-        header('location:edit-user.php');
-      }
-    }
-  }
-  ?>
-
   <main>
+    <?php if ($err) { ?>
+      <div class="mt-5 container alert alert-danger alert-dismissible fade show" role="alert">
+        <?= $err ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php } ?>
+
     <div class="container d-flex align-items-center justify-content-center">
       <div class="form-field p-3 mt-5">
         <form method="post" action="edit-user.php" id="form-signup" name="form-signup">

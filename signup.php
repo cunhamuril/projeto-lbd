@@ -1,3 +1,36 @@
+<?php
+$con = mysqli_connect("localhost", "root", "12341234", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
+
+$msg = null;
+$alertType = "";
+
+if (
+  !empty($_POST['login']) &&
+  !empty($_POST['password']) &&
+  !empty($_POST['confirm-password'])
+) {
+  $login = $_POST['login'];
+  $password = $_POST['password'];
+  $confirmPassword = $_POST['confirm-password'];
+
+  if ($password != $confirmPassword) {
+    $msg = "As senhas não conferem!";
+    $alertType = "alert-danger";
+  } else {
+    $result = mysqli_query($con, "SELECT * FROM `user` WHERE `name` = '$login'");
+    if (mysqli_num_rows($result) > 0) {
+      $msg = "Nome de usuário já existente!";
+      $alertType = "alert-danger";
+    } else {
+      $query = "INSERT INTO `user` (name, password) VALUES ('$login', '$password')";
+      mysqli_query($con, $query);
+      $msg = "Usuário cadastrado com sucesso!";
+      $alertType = "alert-success";
+    }
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,55 +43,19 @@
 </head>
 
 <body>
-  <?php
-  if (
-    !empty($_POST['login']) &&
-    !empty($_POST['password']) &&
-    !empty($_POST['confirm-password'])
-  ) {
-    $login = $_POST['login'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm-password'];
-
-    $con = mysqli_connect("localhost", "root", "12341234", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
-
-    if ($password != $confirmPassword) {
-      echo
-        '<div class="mt-5 container alert alert-danger alert-dismissible fade show" role="alert">
-          As senhas não conferem!
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-         </div>';
-    } else {
-      $result = mysqli_query($con, "SELECT * FROM `user` WHERE `name` = '$login'");
-      if (mysqli_num_rows($result) > 0) {
-        echo
-          '<div class="mt-5 container alert alert-danger alert-dismissible fade show" role="alert">
-              Nome de usuário já existente!
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>';
-      } else {
-        $query = "INSERT INTO `user` (name, password) VALUES ('$login', '$password')";
-        mysqli_query($con, $query);
-        echo
-          '<div class="mt-5 container alert alert-success alert-dismissible fade show" role="alert">
-              Usuário cadastrado com sucesso!
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>';
-      }
-    }
-  }
-  ?>
-
+  <?php if ($msg) { ?>
+    <div class="mt-5 container alert <?= $alertType ?> alert-dismissible fade show" role="alert">
+      <?= $msg ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <?php } ?>
 
   <div class="mt-5 mb-3 d-flex justify-content-center align-items-center">
     <img src="./assets/logo2.png" alt="logo" height="85px">
   </div>
+
   <div class="container d-flex align-items-center justify-content-center">
     <div class="form-field p-3">
       <form method="post" action="signup.php" id="form-signup" name="form-signup">

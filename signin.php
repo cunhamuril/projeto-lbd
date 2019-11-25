@@ -1,3 +1,30 @@
+<?php
+  $con = mysqli_connect("localhost", "root", "12341234", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
+  $err = null;
+
+  if (!empty($_POST['login']) && !empty($_POST['password'])) {
+    session_start();
+
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+
+    $result = mysqli_query($con, "SELECT * FROM `user` WHERE `name` = '$login' AND `password`='$password'");
+
+    if (mysqli_num_rows($result) > 0) {
+      $row = mysqli_fetch_assoc($result);
+      
+      $_SESSION['login'] = $login;
+      $_SESSION['password'] = $password;
+      $_SESSION['id'] = $row["id"];
+      header('location:index.php');
+    } else {
+      $err = "Usuário e/ou senha inválido!";
+      unset($_SESSION['login']);
+      unset($_SESSION['password']);
+    }
+  }
+  ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,38 +36,15 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body>
-  <?php
-  if (!empty($_POST['login']) && !empty($_POST['password'])) {
-    session_start();
-
-    $login = $_POST['login'];
-    $password = $_POST['password'];
-
-    $con = mysqli_connect("localhost", "root", "12341234", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
-
-    $result = mysqli_query($con, "SELECT * FROM `user` WHERE `name` = '$login' AND `password`='$password'");
-
-    if (mysqli_num_rows($result) > 0) {
-      $row = mysqli_fetch_assoc($result);
-
-      $_SESSION['login'] = $login;
-      $_SESSION['password'] = $password;
-      $_SESSION['id'] = $row["id"];
-      header('location:index.php');
-    } else {
-      echo
-        '<div class="mt-5 container alert alert-danger alert-dismissible fade show" role="alert">
-            Usuário e/ou senha inválido!
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>';
-      unset($_SESSION['login']);
-      unset($_SESSION['password']);
-    }
-  }
-  ?>
+<body> 
+  <?php if ($err) { ?>
+    <div class="mt-5 container alert alert-danger alert-dismissible fade show" role="alert">
+      <?= $err ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <?php } ?>
 
   <div class="mt-5 mb-3 d-flex justify-content-center align-items-center">
     <img src="./assets/logo2.png" alt="logo" height="85px">
