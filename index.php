@@ -50,7 +50,7 @@ function total(&$type)
 {
   global $id, $con;
 
-  $queryTotal = "SELECT COUNT(m.title) AS c FROM $type m
+  $queryTotal = "SELECT COUNT(m.title) AS count FROM $type m
                    INNER JOIN user u
                    ON u.id = m.id_user
                    WHERE u.id = '$id';";
