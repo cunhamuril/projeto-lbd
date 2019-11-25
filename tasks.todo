@@ -1,5 +1,5 @@
 ✔ Editar botão voltar da página gêneros @done (25/11/2019 13:04:46)
 ✔ Corrigir bug que não tá apagando gênero de séries @done (25/11/2019 14:15:35)
 ✔ Programar parte de editar gêneros @done (25/11/2019 15:28:25)
-☐ Corrigir bug que não deleta usuário se ele estiver algo salvo (filmes, séries, generos)
-☐ Fazer apagar filmes, séries e gêneros quando apagar o usuário
+✔ Corrigir bug que não deleta usuário se ele estiver algo salvo (filmes, séries, generos) @done (25/11/2019 15:39:56)
+✔ Fazer apagar filmes, séries e gêneros quando apagar o usuário @done (25/11/2019 15:39:57)
