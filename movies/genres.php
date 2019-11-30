@@ -34,7 +34,7 @@ if (isset($_GET["id"])) {
     mysqli_query($con, $queryDeleteGenre);
 
     if ($con->affected_rows == -1) {
-      $err = $con->errno == 1451 ? "Falha ao apagar! Gênero contém série salva." : "Erro! $con->error";
+      $err = $con->errno == 1451 ? "Falha ao apagar! Gênero contém filme salvo." : "Erro! $con->error";
     } else {
       header('location:genres.php');
     }
