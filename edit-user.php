@@ -1,6 +1,6 @@
 <?php
 $err = null;
-$con = mysqli_connect("localhost", "root", "12341234", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
+$con = mysqli_connect("localhost:3306", "root", "", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
 
 /* 
     esse bloco de código em php verifica se existe a sessão, pois o usuário pode

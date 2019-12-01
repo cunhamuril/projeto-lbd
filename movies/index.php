@@ -1,5 +1,5 @@
   <?php
-  $con = mysqli_connect('localhost', 'root', '12341234', 'projeto_lbd');
+  $con = mysqli_connect('localhost:3306', 'root', '', 'projeto_lbd');
 
   $movieId = -1;
   $title = "";

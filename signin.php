@@ -1,5 +1,5 @@
 <?php
-  $con = mysqli_connect("localhost", "root", "12341234", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
+  $con = mysqli_connect("localhost:3306", "root", "", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
   $err = null;
 
   if (!empty($_POST['login']) && !empty($_POST['password'])) {

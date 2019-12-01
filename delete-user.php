@@ -2,7 +2,7 @@
   session_start();
 
   $id = $_SESSION['id'];  
-  $con = mysqli_connect("localhost", "root", "12341234", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
+  $con = mysqli_connect("localhost", "root", "", "projeto_lbd") or die("Sem conexão com o servidor de banco de dados");
   
   /**
    * O sistema vai deletar todos os dados que estiverem relacionado com o usuário

@@ -1,0 +1,28 @@
+DEBUG     Checking PHPLS_ALLOW_XDEBUG
+DEBUG     The xdebug extension is not loaded
+
+[Info  - 21:43:22] 10 files total
+[Info  - 21:43:22] Indexing project for definitions and static references
+Parsing file:///opt/lampp/htdocs/projeto-lbd/delete-user.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/edit-user.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/signup.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/signout.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/signin.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/index.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/series/index.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/series/genres.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/movies/index.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/movies/genres.php
+[Info  - 21:43:22] Indexing project for dynamic references
+Parsing file:///opt/lampp/htdocs/projeto-lbd/delete-user.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/edit-user.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/signup.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/signout.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/signin.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/index.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/series/index.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/series/genres.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/movies/index.php
+Parsing file:///opt/lampp/htdocs/projeto-lbd/movies/genres.php
+[Info  - 21:43:22] 0 Packages
+[Info  - 21:43:22] All 10 PHP files parsed in 0 seconds. 170 MiB allocated.

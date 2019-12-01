@@ -1,0 +1,13 @@
+{
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 12.5,
+    "editor.rulers": [100, 120],
+    
+    "debug.console.fontSize": 12, 
+    
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Dracula",
+    "window.zoomLevel": 1,
+    "extensions.ignoreRecommendations": false
+}
